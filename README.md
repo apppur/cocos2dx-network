@@ -1,0 +1,1 @@
+A example of the cocos2dx client of skynet using google protobuf 
