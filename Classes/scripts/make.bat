@@ -1,0 +1,1 @@
+protoc.exe -I=./../proto/ --cpp_out=./../network/message/ ./../proto/*

@@ -1,0 +1,78 @@
+option optimize_for = SPEED;
+//import "coremessage.proto";
+
+// role message module ID is 0x0001, function ID begin 0x0000. opcode = (module ID ) << 16 | (function ID)
+
+enum RoleOpcode
+{
+	ID_C2S_ROLE_LOGIN_REQUEST			= 0x00010000;	// client login request.
+	ID_S2C_ROLE_LOGIN_RESPONSE			= 0x00010001;	// server login response.
+	ID_C2S_ROLE_CREATE_REQUEST 			= 0x00010002;	// client create role request.
+	ID_S2C_ROLE_CREATE_RESPONSE			= 0x00010003;	// server create role response.
+	ID_C2S_ROLE_PROPERTY_REQUEST		= 0x00010004;	// client role property request.
+	ID_S2C_ROLE_PROPERTY_RESPONSE 		= 0x00010005;	// server role property response.
+	ROLE_MODULE_END						= 0x00010006; 	//
+}
+
+// ID_C2S_ROLE_LOGIN_REQUEST
+message CMessageRoleLoginRequest
+{
+	//optional MessageHead head 	= 1;
+	optional string token			= 1;
+}
+
+// ID_S2C_ROLE_LOGIN_RESPONSE
+message CMessageRoleLoginResponse
+{
+	optional int32 userid		= 1;
+	optional string nickname 	= 2;
+	optional int32 level 		= 3;
+	optional int32 exp			= 4;
+	optional int32 physical 	= 5;
+	optional int32 glod			= 6;
+	optional int32 diamond 		= 7;
+	optional int32 result		= 8;
+	optional int32 bits			= 9;
+	optional int32 mission1		= 10;
+	optional int32 timeleft		= 11;
+	optional int32 interval		= 12;
+	optional int32 addition		= 13;
+	optional int32 mission2		= 14;
+}
+
+//ID_C2S_ROLE_CREATE_REQUEST
+message CMessageRoleCreateRequest
+{
+	optional int32 style 		= 1;			// role style
+	optional int32 userid 		= 2;			// 
+	optional string nickname 	= 3;
+}
+
+//ID_S2C_ROLE_CREATE_RESPONSE
+message CMessageRoleCreateResponse
+{
+	optional int32 result 		= 1;
+}
+
+//ID_C2S_ROLE_PROPERTY_REQUEST
+message CMessageRolePropertyRequest
+{
+	optional int32 style 		= 1;
+	optional int32 userid 		= 2;
+}
+
+//ID_S2C_ROLE_PROPERTY_RESPONSE
+message CMessageRolePropertyResponse
+{
+	optional int32 fight 		= 1;
+	optional int32 attack 		= 2;
+	optional int32 defence 		= 3;
+	optional int32 hp 			= 4;
+	optional int32 speed 		= 5;
+	optional int32 crit 		= 6;
+	optional int32 immunity 	= 7;
+	optional int32 magic 		= 8;
+	optional int32 strong 		= 9;
+	optional int32 agile 		= 10;
+	optional int32 endurance 	= 11;
+}

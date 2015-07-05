@@ -1,0 +1,46 @@
+option optimize_for = SPEED;
+
+// role message module ID is 0x0000, function ID begin 0x0000. opcode = (module ID ) << 16 | (function ID)
+
+enum LoginOpcode
+{
+	ID_C2S_LOGIN_INFO_REQUEST		= 0x00000000;
+	ID_S2C_LOGIN_INFO_RESPONSE 		= 0x00000001;
+	ID_C2S_LOGIN_SERVER_REQUEST 	= 0x00000002;
+	ID_S2C_LOGIN_SERVER_RESPONSE 	= 0x00000003;
+	LOGIN_MODULE_END 			 	= 0x00000004;
+}
+//ID_C2S_LOGIN_INFO_REQUEST
+message CMessageLoginInfoRequest
+{
+	optional string	version	= 1;
+	optional int32 	serial	= 2;
+}
+//ID_S2C_LOGIN_INFO_RESPONSE
+message CMessageLoginInfoResponse
+{
+	optional string version = 1;
+	optional int32	serial 	= 2;
+	optional string	ip 		= 3;
+	optional int32 	port 	= 4;
+	optional string name 	= 5;
+}
+//ID_C2S_LOGIN_SERVER_REQUEST
+message CMessageLoginServerRequest
+{
+	optional string version = 1;
+}
+//ID_S2C_LOGIN_SERVER_RESPONSE
+message CMessageLoginServerResponse
+{
+	message ServerList
+	{
+		optional int32 	serial	= 1;
+		optional string	ip 	 	= 2; 
+		optional int32 	port 	= 3;
+		optional string name 	= 4;
+		optional int32 	status 	= 5;
+	}
+
+	repeated ServerList	lists = 1;
+}

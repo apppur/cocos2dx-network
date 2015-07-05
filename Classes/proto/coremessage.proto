@@ -1,0 +1,21 @@
+option optimize_for = SPEED;
+
+// opcode is 32 bit value.
+//	  |32    24		   16        8        0 |		  
+// 	  |0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0|
+//    |--   16 bit H   --|--   16 bit L   --|
+// high 16 bit represent module ID, low 16 bit represent function ID in the module.
+
+enum ModuleID
+{
+	MODULE_LOGIN 	= 0x0000;
+	MODULE_ROLE 	= 0x0001;
+	MODULE_END 		= 0x0002;
+}
+
+message MessageHead
+{
+	optional int32 msgno 	= 1;
+	optional string token 	= 2;
+	optional string mac		= 3;
+}
